@@ -9,9 +9,9 @@ export default function App() {
 
   useEffect(() => {
     // Backend linki Render'da canlı olan link
-    const API_URL = import.meta.env.VITE_API_URL || 'https://fullstack-product-listing.onrender.com'
+    const API_URL = import.meta.env.VITE_API_URL || 'https://p-3-qfxm.onrender.com'
 
-    fetch(`${API_URL}/products`)
+    fetch(`${API_URL}/api/products`)
       .then(res => {
         if (!res.ok) throw new Error('Network error')
         return res.json()
