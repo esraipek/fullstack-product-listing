@@ -21,7 +21,7 @@ async function fetchGoldPrice() {
     return cache.price; // 5 dakika cache
   }
 
- 
+  // Eğer API bilgileri .env içinde varsa burayı doldur
   if (process.env.GOLD_API_URL && process.env.GOLD_API_KEY) {
     const resp = await axios.get(process.env.GOLD_API_URL, {
       params: { apikey: process.env.GOLD_API_KEY },
@@ -32,8 +32,10 @@ async function fetchGoldPrice() {
     return price;
   }
 
+ 
   return parseFloat(process.env.GOLD_PRICE || 60);
 }
+
 
 app.get('/api/products', async (req, res) => {
   const goldPrice = await fetchGoldPrice();
@@ -47,7 +49,7 @@ app.get('/api/products', async (req, res) => {
     };
   });
 
-
+ 
   if (req.query.minPrice) items = items.filter((i) => i.price >= Number(req.query.minPrice));
   if (req.query.maxPrice) items = items.filter((i) => i.price <= Number(req.query.maxPrice));
   if (req.query.minPopularity) items = items.filter((i) => i.popularity5 >= Number(req.query.minPopularity));
