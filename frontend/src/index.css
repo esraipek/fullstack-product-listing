@@ -1,4 +1,4 @@
-/* src/index.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
 
 body {
@@ -9,7 +9,7 @@ body {
   font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* Kart tasarımı */
+
 .card {
   background: white;
   border-radius: 16px;
@@ -38,7 +38,7 @@ body {
 }
 
 .card .stars {
-  color: #E6CA97; /* sarı yıldız */
+  color: #E6CA97; 
   margin-bottom: 10px;
 }
 
