@@ -1,4 +1,4 @@
-// server.js
+
 require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
@@ -8,13 +8,13 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-// products.json dosyasını oku
+
 const PRODUCTS = JSON.parse(fs.readFileSync('./products.json', 'utf8'));
 
-// Cache mekanizması
+
 let cache = { price: null, ts: 0 };
 
-// Altın fiyatını al
+
 async function fetchGoldPrice() {
   const now = Date.now();
   if (cache.price && now - cache.ts < 5 * 60 * 1000) {
@@ -32,11 +32,11 @@ async function fetchGoldPrice() {
     return price;
   }
 
-  // Fallback: .env dosyasında GOLD_PRICE varsa onu kullan
+ 
   return parseFloat(process.env.GOLD_PRICE || 60);
 }
 
-// Endpoint: /api/products
+
 app.get('/api/products', async (req, res) => {
   const goldPrice = await fetchGoldPrice();
 
@@ -49,7 +49,7 @@ app.get('/api/products', async (req, res) => {
     };
   });
 
-  // Filtreleme (opsiyonel)
+ 
   if (req.query.minPrice) items = items.filter((i) => i.price >= Number(req.query.minPrice));
   if (req.query.maxPrice) items = items.filter((i) => i.price <= Number(req.query.maxPrice));
   if (req.query.minPopularity) items = items.filter((i) => i.popularity5 >= Number(req.query.minPopularity));
@@ -57,6 +57,6 @@ app.get('/api/products', async (req, res) => {
   res.json(items);
 });
 
-// Sunucuyu başlat
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
