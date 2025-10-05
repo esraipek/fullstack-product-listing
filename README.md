@@ -14,3 +14,6 @@ node server.js
 cd frontend
 npm install
 npm run dev
+
+
+Canlı Proje Linki: https://p4-rust.vercel.app/
