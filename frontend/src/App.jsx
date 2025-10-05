@@ -8,8 +8,10 @@ export default function App() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
-    fetch(`${API_URL}/api/products`)
+    // Backend linki Render'da canlı olan link
+    const API_URL = import.meta.env.VITE_API_URL || 'https://fullstack-product-listing.onrender.com'
+
+    fetch(`${API_URL}/products`)
       .then(res => {
         if (!res.ok) throw new Error('Network error')
         return res.json()
